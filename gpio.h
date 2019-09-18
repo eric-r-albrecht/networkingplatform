@@ -80,6 +80,7 @@ typedef struct{
     ePinState (*read)(const gpio_cfg* io);
     void (*set)(const gpio_cfg* io);
     void (*clear)(const gpio_cfg* io);
+    void (*toggle)(const gpio_cfg* io);
     void (*set_interrupt)(const gpio_cfg* io);
 }functions;
 
@@ -93,6 +94,7 @@ void standard_config(const gpio_cfg* io);
 ePinState standard_read(const gpio_cfg* io);
 void standard_set(const gpio_cfg* io);
 void standard_clear(const gpio_cfg* io);
+void standard_toggle(const gpio_cfg* io);
 void standard_set_interrupt(const gpio_cfg* io);
 
 #define EMPTY_GPIO 0U

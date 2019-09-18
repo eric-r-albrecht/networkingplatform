@@ -54,9 +54,14 @@ void standard_clear(const gpio_cfg* io){
     }
 }
 
+/** This is the standard toggle method for any io **/
+void standard_toggle(const gpio_cfg* io){
+    *((uint8_t*)io->port_address+OUT_R) ^= (io->mask);
+}
+
 /** This is the standard set interrupt method for any io **/
 void standard_set_interrupt(const gpio_cfg* io){
 
 }
 
-const functions standard_map = {&standard_config, &standard_read, &standard_set, &standard_clear, &standard_set_interrupt};
+const functions standard_map = {&standard_config, &standard_read, &standard_set, &standard_clear, &standard_toggle, &standard_set_interrupt};
