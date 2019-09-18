@@ -37,8 +37,8 @@ typedef enum{
 
 /** This is the interrupt status of the gpio **/
 typedef enum{
-    eInt_RISING_EDGE,
-    eInt_FALLING_EDGE,
+    eInt_ON_TO_OFF,
+    eInt_OFF_TO_ON,
     eInt_NONE
 }eInt;
 
@@ -82,6 +82,7 @@ typedef struct{
     void (*clear)(const gpio_cfg* io);
     void (*toggle)(const gpio_cfg* io);
     void (*set_interrupt)(const gpio_cfg* io);
+    void (*toggle_interrupt_edge)(const gpio_cfg* io);
 }functions;
 
 /** This is the assembly of the function with the config. **/
@@ -90,12 +91,18 @@ typedef struct{
     const functions* io_map;
 }gpio;
 
+void gpio_access(const gpio_cfg* io, uint8_t reg_offset, ePinState on_off);
+void gpio_do_nothing(void);
+
 void standard_config(const gpio_cfg* io);
 ePinState standard_read(const gpio_cfg* io);
 void standard_set(const gpio_cfg* io);
 void standard_clear(const gpio_cfg* io);
 void standard_toggle(const gpio_cfg* io);
 void standard_set_interrupt(const gpio_cfg* io);
+void standard_toggle_interrupt_edge(const gpio_cfg* io);
+
+void reset_interrupt_flags(const gpio_cfg* io);
 
 #define EMPTY_GPIO 0U
 
