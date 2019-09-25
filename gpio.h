@@ -104,6 +104,11 @@ void standard_toggle_interrupt_edge(const gpio_cfg* io);
 
 void reset_interrupt_flags(const gpio_cfg* io);
 
+typedef enum{
+    eInput_ON,
+    eInput_OFF
+}eInput_State;
+
 #define EMPTY_GPIO 0U
 
 #endif /* GPIO_H_ */
